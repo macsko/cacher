@@ -10,8 +10,14 @@ import (
 	"github.com/rainycape/memcache"
 )
 
+// Memcached is a wrapper for rainycape/memcache library Client and key expiration.
+// The provided Go's structures of type T are stored as the JSON.
 type Memcached[T any] struct {
-	client     *memcache.Client
+	client *memcache.Client
+	// Expiration is the cache expiration time, in seconds: either a relative
+	// time from now (up to 1 month), or an absolute Unix epoch time.
+	// Zero means the Item has no expiration time.
+	// Description is taken from memcache.Item structure.
 	expiration int32
 }
 
